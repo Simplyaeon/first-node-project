@@ -43,8 +43,9 @@ app.post("/todos", (req,res)=>{
 })
 
 // PUT request for updating task
-app.put("/todos/",(req,res)=>{
-    const {id,task,complete} =req.body;
+app.put("/todos/:id",(req,res)=>{
+    const {id} = req.params.id;
+    const {task,complete} =req.body;
     const todo = todos.find(t=>t.id ===parseInt(id))
     if(!todo) return res.status(404).json("Todo not found");
     todo.task = task || req.todo.task;
